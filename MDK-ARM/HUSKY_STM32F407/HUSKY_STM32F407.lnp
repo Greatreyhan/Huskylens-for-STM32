@@ -1,0 +1,28 @@
+--cpu=Cortex-M4.fp.sp
+"husky_stm32f407\startup_stm32f407xx.o"
+"husky_stm32f407\main.o"
+"husky_stm32f407\stm32f4xx_it.o"
+"husky_stm32f407\stm32f4xx_hal_msp.o"
+"husky_stm32f407\huskylens_driver.o"
+"husky_stm32f407\stm32f4xx_hal_i2c.o"
+"husky_stm32f407\stm32f4xx_hal_i2c_ex.o"
+"husky_stm32f407\stm32f4xx_hal_rcc.o"
+"husky_stm32f407\stm32f4xx_hal_rcc_ex.o"
+"husky_stm32f407\stm32f4xx_hal_flash.o"
+"husky_stm32f407\stm32f4xx_hal_flash_ex.o"
+"husky_stm32f407\stm32f4xx_hal_flash_ramfunc.o"
+"husky_stm32f407\stm32f4xx_hal_gpio.o"
+"husky_stm32f407\stm32f4xx_hal_dma_ex.o"
+"husky_stm32f407\stm32f4xx_hal_dma.o"
+"husky_stm32f407\stm32f4xx_hal_pwr.o"
+"husky_stm32f407\stm32f4xx_hal_pwr_ex.o"
+"husky_stm32f407\stm32f4xx_hal_cortex.o"
+"husky_stm32f407\stm32f4xx_hal.o"
+"husky_stm32f407\stm32f4xx_hal_exti.o"
+"husky_stm32f407\stm32f4xx_hal_tim.o"
+"husky_stm32f407\stm32f4xx_hal_tim_ex.o"
+"husky_stm32f407\system_stm32f4xx.o"
+--strict --scatter "HUSKY_STM32F407\HUSKY_STM32F407.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list "HUSKY_STM32F407.map" -o HUSKY_STM32F407\HUSKY_STM32F407.axf
