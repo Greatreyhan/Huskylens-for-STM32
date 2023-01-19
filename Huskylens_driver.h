@@ -24,6 +24,11 @@
 #define ALGORITHM_TAG_RECOGNITION 0x0005
 #define ALGORITHM_OBJECT_CLASSIFICATION 0x0006
 
+typedef struct{
+	uint16_t num_block_arr;
+	uint16_t num_id;
+	uint16_t current_frame;
+}huskylens_info_t;
 
 typedef enum{
 	HUSKY_OK = 0x00,
@@ -33,6 +38,7 @@ typedef enum{
 
 // Typedef
 typedef struct{
+	huskylens_info_t info;
 	uint16_t X_origin;
 	uint16_t Y_origin;
 	uint16_t X_target;
@@ -41,34 +47,13 @@ typedef struct{
 } huskylens_arrow_t;
 
 typedef struct{
-	uint16_t X_origin;
-	uint16_t Y_origin;
-	uint16_t X_target;
-	uint16_t Y_target;
-	uint16_t id;
-} huskylens_learned_arrow_t;
-
-typedef struct{
+	huskylens_info_t info;
 	uint16_t X_center;
 	uint16_t Y_center;
 	uint16_t width;
 	uint16_t height;
 	uint16_t id;
 } huskylens_block_t;
-
-typedef struct{
-	uint16_t X_center;
-	uint16_t Y_center;
-	uint16_t width;
-	uint16_t height;
-	uint16_t id;
-} huskylens_learned_block_t;
-
-typedef struct{
-	uint16_t num_block_arr;
-	uint16_t num_id;
-	uint16_t current_frame;
-}huskylens_all_t;
 
 typedef struct{
 	uint16_t num_block_arr;
@@ -85,9 +70,7 @@ typedef struct{
 	uint16_t num_id;
 	uint16_t current_frame;
 	huskylens_arrow_t arrow;
-	huskylens_learned_arrow_t learned_arrow;
 	huskylens_block_t block;
-	huskylens_learned_block_t learned_block;
 } huskylens_t;
 
 
@@ -97,7 +80,7 @@ typedef struct{
 huskylens_status_t husky_setup(I2C_HandleTypeDef *i2cHandler );
 
 // Get All Row & Block
-huskylens_all_t husky_getAllArrowBlock(void);
+huskylens_info_t husky_getAllArrowBlock(void);
 
 // Get All Arrow
 huskylens_arrow_t husky_getArrows(void);
@@ -106,13 +89,13 @@ huskylens_arrow_t husky_getArrows(void);
 huskylens_block_t husky_getBlocks(void);
 
 // Get All Learned Block
-huskylens_learned_block_t husky_getLearnedBlocks(void);
+huskylens_block_t husky_getLearnedBlocks(void);
 
 // Get All Learned Arrows
-huskylens_learned_arrow_t husky_getLearnedArrows(void);
+huskylens_arrow_t husky_getLearnedArrows(void);
 
 // Get All Block & Arrow by ID
-huskylens_all_byid_t husky_getAllById(uint16_t id);
+huskylens_info_t husky_getAllById(uint16_t id);
 
 // Get Block By Id
 huskylens_block_t husky_getBlockById(uint16_t id);

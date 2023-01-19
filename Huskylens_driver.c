@@ -1,7 +1,7 @@
 /*
  * Huskylens_driver.c
  *
- *  Created on: Janvoid 18, 2022
+ *  Created on: Jan 18, 2022
  *      Author: Maulana Reyhan Savero
  */
 
@@ -35,8 +35,8 @@ huskylens_status_t husky_setup(I2C_HandleTypeDef *i2cHandler ){
 	return HUSKY_TIMEOUT;
 }
 
-huskylens_all_t husky_getAllArrowBlock(void){
-	huskylens_all_t handler;
+huskylens_info_t husky_getAllArrowBlock(void){
+	huskylens_info_t handler;
 	// Command Request
 	uint8_t req[] = {0x55, 0xAA, 0x11, 0x00, 0x20, 0x30};
 	HAL_I2C_Master_Transmit(hi2c, HUSKY_ADDR, req, 6, 100);
@@ -57,15 +57,21 @@ huskylens_arrow_t husky_getArrows(void){
 	uint8_t reqArr[] = {0x55, 0xAA, 0x11, 0x00, 0x22, 0x32};
 	HAL_I2C_Master_Transmit(hi2c, HUSKY_ADDR, reqArr, 6, 100);
 	
-	// Return INFO
-	uint8_t rxBuff[16];
-	HAL_I2C_Master_Receive(hi2c, HUSKY_ADDR, rxBuff, 16, 100);
-	handler.X_origin = (rxBuff[6] << 8) | rxBuff[5];
-	handler.Y_origin = (rxBuff[8] << 8) | rxBuff[7];
-	handler.X_target = (rxBuff[10] << 8) | rxBuff[9];
-	handler.Y_target = (rxBuff[10] << 8) | rxBuff[9];
-	handler.id = (rxBuff[12] << 8) | rxBuff[11];
-	
+	// Return 
+	uint8_t rxBuff[50];
+  HAL_I2C_Master_Receive(hi2c, HUSKY_ADDR, rxBuff, 50, 100);
+	if( rxBuff[4] == 0x29){
+		handler.info.num_block_arr = (rxBuff[6] << 8) | rxBuff[5];
+		handler.info.num_id = (rxBuff[8] << 8) | rxBuff[7];
+		handler.info.current_frame = (rxBuff[10] << 8) | rxBuff[9];
+	}
+	if( rxBuff[20] == 0x2B){
+		handler.X_origin = (rxBuff[22] << 8) | rxBuff[21];
+		handler.Y_origin = (rxBuff[24] << 8) | rxBuff[23];
+		handler.X_target = (rxBuff[26] << 8) | rxBuff[25];
+		handler.Y_target = (rxBuff[28] << 8) | rxBuff[27];
+		handler.id = (rxBuff[30] << 8) | rxBuff[29];
+	}
 	return handler;
 }
 
@@ -75,61 +81,85 @@ huskylens_block_t husky_getBlocks(void){
 	HAL_I2C_Master_Transmit(hi2c, HUSKY_ADDR, reqBlock, 6, 100);
 	
 	// Return INFO
-	uint8_t rxBuff[16];
-	HAL_I2C_Master_Receive(hi2c, HUSKY_ADDR, rxBuff, 16, 100);
-	handler.X_center = (rxBuff[6] << 8) | rxBuff[5];
-	handler.Y_center = (rxBuff[8] << 8) | rxBuff[7];
-	handler.width = (rxBuff[10] << 8) | rxBuff[9];
-	handler.height = (rxBuff[10] << 8) | rxBuff[9];
-	handler.id = (rxBuff[12] << 8) | rxBuff[11];
+	uint8_t rxBuff[50];
+  HAL_I2C_Master_Receive(hi2c, HUSKY_ADDR, rxBuff, 50, 100);
+	if( rxBuff[4] == 0x29){
+		handler.info.num_block_arr = (rxBuff[6] << 8) | rxBuff[5];
+		handler.info.num_id = (rxBuff[8] << 8) | rxBuff[7];
+		handler.info.current_frame = (rxBuff[10] << 8) | rxBuff[9];
+	}
+	if( rxBuff[20] == 0x2A){
+		handler.X_center = (rxBuff[22] << 8) | rxBuff[21];
+		handler.Y_center = (rxBuff[24] << 8) | rxBuff[23];
+		handler.width = (rxBuff[26] << 8) | rxBuff[25];
+		handler.height = (rxBuff[28] << 8) | rxBuff[27];
+		handler.id = (rxBuff[30] << 8) | rxBuff[29];
+	}
 	
 	return handler;
 }
 
-huskylens_learned_block_t husky_getLearnedBlocks(void){
-	huskylens_learned_block_t handler;
+huskylens_block_t husky_getLearnedBlocks(void){
+	huskylens_block_t handler;
 	uint8_t reqLearnedBlock[] = {0x55, 0xAA, 0x11, 0x00, 0x24, 0x34};
 	HAL_I2C_Master_Transmit(hi2c, HUSKY_ADDR, reqLearnedBlock, 6, 100);
 	
 	// Return INFO
-	uint8_t rxBuff[16];
-	HAL_I2C_Master_Receive(hi2c, HUSKY_ADDR, rxBuff, 16, 100);
-	handler.X_center = (rxBuff[6] << 8) | rxBuff[5];
-	handler.Y_center = (rxBuff[8] << 8) | rxBuff[7];
-	handler.width = (rxBuff[10] << 8) | rxBuff[9];
-	handler.height = (rxBuff[10] << 8) | rxBuff[9];
-	handler.id = (rxBuff[12] << 8) | rxBuff[11];
+	uint8_t rxBuff[50];
+  HAL_I2C_Master_Receive(hi2c, HUSKY_ADDR, rxBuff, 50, 100);
+	if( rxBuff[4] == 0x29){
+		handler.info.num_block_arr = (rxBuff[6] << 8) | rxBuff[5];
+		handler.info.num_id = (rxBuff[8] << 8) | rxBuff[7];
+		handler.info.current_frame = (rxBuff[10] << 8) | rxBuff[9];
+	}
+	if( rxBuff[20] == 0x2A){
+		handler.X_center = (rxBuff[22] << 8) | rxBuff[21];
+		handler.Y_center = (rxBuff[24] << 8) | rxBuff[23];
+		handler.width = (rxBuff[26] << 8) | rxBuff[25];
+		handler.height = (rxBuff[28] << 8) | rxBuff[27];
+		handler.id = (rxBuff[30] << 8) | rxBuff[29];
+	}
 	
 	return handler;
 }
 
-huskylens_learned_arrow_t husky_getLearnedArrows(void){
-	huskylens_learned_arrow_t handler;
+huskylens_arrow_t husky_getLearnedArrows(void){
+	huskylens_arrow_t handler;
 	// Command Request
 	uint8_t reqArr[] = {0x55, 0xAA, 0x11, 0x00, 0x25, 0x35};
 	HAL_I2C_Master_Transmit(hi2c, HUSKY_ADDR, reqArr, 6, 100);
 	
-	// Return INFO
-	uint8_t rxBuff[16];
-	HAL_I2C_Master_Receive(hi2c, HUSKY_ADDR, rxBuff, 16, 100);
-	handler.X_origin = (rxBuff[6] << 8) | rxBuff[5];
-	handler.Y_origin = (rxBuff[8] << 8) | rxBuff[7];
-	handler.X_target = (rxBuff[10] << 8) | rxBuff[9];
-	handler.Y_target = (rxBuff[10] << 8) | rxBuff[9];
-	handler.id = (rxBuff[12] << 8) | rxBuff[11];
+	// Return 
+	uint8_t rxBuff[50];
+  HAL_I2C_Master_Receive(hi2c, HUSKY_ADDR, rxBuff, 50, 100);
+	if( rxBuff[4] == 0x29){
+		handler.info.num_block_arr = (rxBuff[6] << 8) | rxBuff[5];
+		handler.info.num_id = (rxBuff[8] << 8) | rxBuff[7];
+		handler.info.current_frame = (rxBuff[10] << 8) | rxBuff[9];
+	}
+	if( rxBuff[20] == 0x2B){
+		handler.X_origin = (rxBuff[22] << 8) | rxBuff[21];
+		handler.Y_origin = (rxBuff[24] << 8) | rxBuff[23];
+		handler.X_target = (rxBuff[26] << 8) | rxBuff[25];
+		handler.Y_target = (rxBuff[28] << 8) | rxBuff[27];
+		handler.id = (rxBuff[30] << 8) | rxBuff[29];
+	}
 	
 	return handler;
 }
 
-huskylens_all_byid_t husky_getAllById(uint16_t id){
-	huskylens_all_byid_t handler;
+huskylens_info_t husky_getAllById(uint16_t id){
+	huskylens_info_t handler;
 	// Command Request
 	uint8_t reqArr[] = {0x55, 0xAA, 0x11, 0x02, 0x26, 0x01, 0x00, 0x39};
 	HAL_I2C_Master_Transmit(hi2c, HUSKY_ADDR, reqArr, 8, 100);
 	
 	// Return INFO
 	uint8_t rxBuff[16];
-	HAL_I2C_Master_Receive(hi2c, HUSKY_ADDR, handler.buff, 16, 100);
+	HAL_I2C_Master_Receive(hi2c, HUSKY_ADDR, rxBuff, 16, 100);
+	handler.num_block_arr = (rxBuff[6] << 8) | rxBuff[5];
+	handler.num_id = (rxBuff[8] << 8) | rxBuff[7];
+	handler.current_frame = (rxBuff[10] << 8) | rxBuff[9];
 	
 	return handler;
 }
@@ -140,18 +170,23 @@ huskylens_block_t husky_getBlockById(uint16_t id){
 	msg[7] = (0x55 + 0xAA + 0x11 + 0x02+ 0x27+ (id & 0xFF) + ((id >> 8)&(0xFF)) + 0x00) & 0xFF;
 	HAL_I2C_Master_Transmit(hi2c, HUSKY_ADDR, msg, 8, 100);
 	
-	// Return INFO
-	uint8_t rxBuff[16];
-	HAL_I2C_Master_Receive(hi2c, HUSKY_ADDR, rxBuff, 16, 100);
-	handler.X_center = (rxBuff[6] << 8) | rxBuff[5];
-	handler.Y_center = (rxBuff[8] << 8) | rxBuff[7];
-	handler.width = (rxBuff[10] << 8) | rxBuff[9];
-	handler.height = (rxBuff[10] << 8) | rxBuff[9];
-	handler.id = (rxBuff[12] << 8) | rxBuff[11];
-	
+	// Return
+	uint8_t rxBuff[50];
+  HAL_I2C_Master_Receive(hi2c, HUSKY_ADDR, rxBuff, 50, 100);
+	if( rxBuff[4] == 0x29){
+		handler.info.num_block_arr = (rxBuff[6] << 8) | rxBuff[5];
+		handler.info.num_id = (rxBuff[8] << 8) | rxBuff[7];
+		handler.info.current_frame = (rxBuff[10] << 8) | rxBuff[9];
+	}
+	if( rxBuff[20] == 0x2A){
+		handler.X_center = (rxBuff[22] << 8) | rxBuff[21];
+		handler.Y_center = (rxBuff[24] << 8) | rxBuff[23];
+		handler.width = (rxBuff[26] << 8) | rxBuff[25];
+		handler.height = (rxBuff[28] << 8) | rxBuff[27];
+		handler.id = (rxBuff[30] << 8) | rxBuff[29];
+	}
 	return handler;
 }
-
 huskylens_arrow_t husky_getArrowById(uint16_t id){
 	huskylens_arrow_t handler;
 	// Command Request
@@ -160,15 +195,20 @@ huskylens_arrow_t husky_getArrowById(uint16_t id){
 	HAL_I2C_Master_Transmit(hi2c, HUSKY_ADDR, msg, 8, 100);
 	
 	// Return INFO
-	uint8_t rxBuff[16];
-	HAL_I2C_Master_Receive(hi2c, HUSKY_ADDR, rxBuff, 16, 100);
-	handler.X_origin = (rxBuff[6] << 8) | rxBuff[5];
-	handler.Y_origin = (rxBuff[8] << 8) | rxBuff[7];
-	handler.X_target = (rxBuff[10] << 8) | rxBuff[9];
-	handler.Y_target = (rxBuff[10] << 8) | rxBuff[9];
-	handler.id = (rxBuff[12] << 8) | rxBuff[11];
-	
-	return handler;
+	uint8_t rxBuff[50];
+  HAL_I2C_Master_Receive(hi2c, HUSKY_ADDR, rxBuff, 50, 100);
+	if( rxBuff[4] == 0x29){
+		handler.info.num_block_arr = (rxBuff[6] << 8) | rxBuff[5];
+		handler.info.num_id = (rxBuff[8] << 8) | rxBuff[7];
+		handler.info.current_frame = (rxBuff[10] << 8) | rxBuff[9];
+	}
+	if( rxBuff[20] == 0x2B){
+		handler.X_origin = (rxBuff[22] << 8) | rxBuff[21];
+		handler.Y_origin = (rxBuff[24] << 8) | rxBuff[23];
+		handler.X_target = (rxBuff[26] << 8) | rxBuff[25];
+		handler.Y_target = (rxBuff[28] << 8) | rxBuff[27];
+		handler.id = (rxBuff[30] << 8) | rxBuff[29];
+	}
 }
 
 huskylens_status_t husky_setAlgorithm(uint16_t algorithm){

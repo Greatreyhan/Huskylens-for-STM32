@@ -1,7 +1,7 @@
 Dependencies for Project 'HUSKY_STM32F407', Target 'HUSKY_STM32F407': (DO NOT MODIFY !)
 CompilerVersion: 5060960::V5.06 update 7 (build 960)::.\ARMCC
 F (startup_stm32f407xx.s)(0x63C7D625)(--cpu Cortex-M4.fp.sp --pd "__EVAL SETA 1" -g --apcs=interwork -I.\RTE\_HUSKY_STM32F407-IC:\Users\greatreyhan\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\greatreyhan\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include--pd "__UVISION_VERSION SETA 535" --pd "_RTE_ SETA 1" --pd "STM32F407xx SETA 1" --pd "_RTE_ SETA 1"--list startup_stm32f407xx.lst --xref -o husky_stm32f407\startup_stm32f407xx.o --depend husky_stm32f407\startup_stm32f407xx.d)
-F (../Core/Src/main.c)(0x63C905BA)(--c99 -c --cpu Cortex-M4.fp.sp -D__EVAL -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ..\..\HUSKY_STM32F407-I.\RTE\_HUSKY_STM32F407-IC:\Users\greatreyhan\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\greatreyhan\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="535" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o husky_stm32f407\main.o --omf_browse husky_stm32f407\main.crf --depend husky_stm32f407\main.d)
+F (../Core/Src/main.c)(0x63C921C3)(--c99 -c --cpu Cortex-M4.fp.sp -D__EVAL -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ..\..\HUSKY_STM32F407-I.\RTE\_HUSKY_STM32F407-IC:\Users\greatreyhan\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\greatreyhan\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="535" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o husky_stm32f407\main.o --omf_browse husky_stm32f407\main.crf --depend husky_stm32f407\main.d)
 I (../Core/Inc/main.h)(0x63C7D61C)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x62DE692D)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x63C7D61B)
@@ -32,7 +32,7 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c.h)(0x62DE692D)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c_ex.h)(0x62DE692D)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h)(0x62DE692D)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x62DE692D)
-I (..\..\HUSKY_STM32F407\Huskylens_driver.h)(0x63C9060E)
+I (..\..\HUSKY_STM32F407\Huskylens_driver.h)(0x63C922B1)
 I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x6025318C)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x6025318E)
 F (../Core/Src/stm32f4xx_it.c)(0x63C7D61A)(--c99 -c --cpu Cortex-M4.fp.sp -D__EVAL -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ..\..\HUSKY_STM32F407-I.\RTE\_HUSKY_STM32F407-IC:\Users\greatreyhan\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\greatreyhan\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="535" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o husky_stm32f407\stm32f4xx_it.o --omf_browse husky_stm32f407\stm32f4xx_it.crf --depend husky_stm32f407\stm32f4xx_it.d)
@@ -98,8 +98,8 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c.h)(0x62DE692D)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c_ex.h)(0x62DE692D)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h)(0x62DE692D)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x62DE692D)
-F (..\Huskylens_driver.c)(0x63C9060E)(--c99 -c --cpu Cortex-M4.fp.sp -D__EVAL -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ..\..\HUSKY_STM32F407-I.\RTE\_HUSKY_STM32F407-IC:\Users\greatreyhan\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\greatreyhan\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="535" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o husky_stm32f407\huskylens_driver.o --omf_browse husky_stm32f407\huskylens_driver.crf --depend husky_stm32f407\huskylens_driver.d)
-I (..\Huskylens_driver.h)(0x63C9060E)
+F (..\Huskylens_driver.c)(0x63C922B1)(--c99 -c --cpu Cortex-M4.fp.sp -D__EVAL -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ..\..\HUSKY_STM32F407-I.\RTE\_HUSKY_STM32F407-IC:\Users\greatreyhan\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\greatreyhan\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="535" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o husky_stm32f407\huskylens_driver.o --omf_browse husky_stm32f407\huskylens_driver.crf --depend husky_stm32f407\huskylens_driver.d)
+I (..\Huskylens_driver.h)(0x63C922B1)
 I (../Core/Inc/main.h)(0x63C7D61C)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x62DE692D)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x63C7D61B)
@@ -132,7 +132,7 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h)(0x62DE692D)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x62DE692D)
 I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x6025318C)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x6025318E)
-F (..\Huskylens_driver.h)(0x63C9060E)()
+F (..\Huskylens_driver.h)(0x63C922B1)()
 F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c.c)(0x62DE692D)(--c99 -c --cpu Cortex-M4.fp.sp -D__EVAL -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ..\..\HUSKY_STM32F407-I.\RTE\_HUSKY_STM32F407-IC:\Users\greatreyhan\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\greatreyhan\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="535" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o husky_stm32f407\stm32f4xx_hal_i2c.o --omf_browse husky_stm32f407\stm32f4xx_hal_i2c.crf --depend husky_stm32f407\stm32f4xx_hal_i2c.d)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x62DE692D)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x63C7D61B)

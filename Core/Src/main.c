@@ -54,12 +54,10 @@ static void MX_I2C1_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-huskylens_all_t huskAll;
-huskylens_status_t resp;
+huskylens_info_t huskAll;
+huskylens_status_t status;
 huskylens_arrow_t arrows;
 huskylens_block_t blocks;
-huskylens_learned_arrow_t learned_arrows;
-huskylens_learned_block_t learned_blocks;
 huskylens_all_byid_t id;
 /* USER CODE END 0 */
 
@@ -99,26 +97,19 @@ int main(void)
 	}
 	
 	huskAll = husky_getAllArrowBlock();
-//	blocks = husky_getBlockById(0x00F9);
-	resp = husky_setAlgorithm(ALGORITHM_COLOR_RECOGNITION);
-//	resp = husky_savePic();
-//	arrows = husky_getArrows();
-//	blocks = husky_getBlocks();
-//	learned_arrows = husky_getLearnedArrows();
-//	learned_blocks = husky_getLearnedBlocks();
-//	id = husky_getAllById(0x00001);
+
+//	status = husky_setAlgorithm(ALGORITHM_COLOR_RECOGNITION);
+
+	
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-//		blocks = husky_getBlockById(0x00F9);
-//		resp = husky_startLearn(0x00F9);
-//		HAL_Delay(5000);
-//		blocks = husky_getBlocks();
-//		blocks = husky_getBlocks();
-//		arrows = husky_getArrows();
+		arrows = husky_getArrows();
+//		blocks = husky_getBlockById(0x0001);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
